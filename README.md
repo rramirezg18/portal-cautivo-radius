@@ -86,15 +86,20 @@ Detener todo y restaurar el sistema:
 sudo bash scripts/detener-portal.sh
 ```
 
-## Usuarios de prueba
+## Roles disponibles
 
-| Usuario   | Contraseña   | Rol     | Timeout |
-|-----------|--------------|---------|---------|
-| guest1    | guest123     | guest   | 30 min  |
-| student1  | student123   | student | 1 h     |
-| student2  | student456   | student | 1 h     |
-| teacher1  | teacher123   | teacher | 2 h     |
-| staff1    | staff123     | staff   | 4 h     |
+El portal reconoce 4 roles diferenciados. Cada uno recibe una landing y un
+tiempo de sesión distinto.
+
+| Rol         | Timeout de sesión | Landing                                      |
+|-------------|-------------------|----------------------------------------------|
+| invitado    | 30 min            | Tips de seguridad para WiFi pública          |
+| estudiante  | 1 h               | Micro-quiz de la clase                       |
+| docente     | 2 h               | Enlaces a recursos académicos simulados      |
+| staff       | 4 h               | Panel administrativo simulado                |
+
+Las credenciales de prueba están definidas en el archivo de usuarios de
+FreeRADIUS (`configs/freeradius-users.example`).
 
 ## Flujo end-to-end
 
@@ -108,18 +113,6 @@ sudo bash scripts/detener-portal.sh
 8. Portal envía `Accounting-Start` a FreeRADIUS.
 9. Al expirar el `Session-Timeout` → portal quita la IP y envía `Accounting-Stop`.
 
-## Estructura del repositorio
-
-```
-portal-cautivo/
-├── README.md
-├── .gitignore
-├── configs/         Configuración de hostapd, dnsmasq, nftables, FreeRADIUS
-├── portal/          Aplicación Flask + diccionario RADIUS
-├── scripts/         Scripts de arranque y detención
-├── docs/            Informe técnico y diagramas
-└── evidencia/       Capturas, pcap y logs por fase
-```
 
 ## Seguridad
 

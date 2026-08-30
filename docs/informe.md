@@ -188,20 +188,48 @@ El portal implementa el flujo:
 
 ![Accounting: Start y Stop registrados](img/fase5-accounting.png)
 
-## 6. Flujo end-to-end
+## 6. Personalización de landing por rol
 
-1. El cliente conecta al SSID `Naruto-WiFi` (abierto).
-2. Recibe IP por DHCP: `10.10.0.X`.
-3. Android/iOS hace su prueba de conectividad (`generate_204` o `hotspot-detect.html`).
-4. nftables intercepta y redirige al portal en `10.10.0.1:80`.
-5. Se abre la CNA con el formulario de login.
-6. El usuario ingresa credenciales; el portal envía Access-Request CHAP a RADIUS.
-7. FreeRADIUS responde con `Access-Accept` + atributos (rol, timeout).
-8. El portal agrega la IP al set autorizado de nftables y envía Accounting-Start.
-9. El cliente ya navega a Internet libremente.
-10. Al expirar el timeout, el portal quita la IP y envía Accounting-Stop.
+El portal aprovecha el atributo `Reply-Message` que RADIUS devuelve en el
+`Access-Accept` para renderizar una landing distinta según el rol del usuario
+autenticado. Esto demuestra que RADIUS no solo autoriza acceso, sino que
+transporta atributos que el cliente (el portal) puede consumir para modificar
+su comportamiento — exactamente como lo hacen los portales corporativos reales.
 
-![Landing del portal después del login](img/landing-conectado.png)
+| Rol         | Contenido de la landing                                    |
+|-------------|------------------------------------------------------------|
+| invitado    | Recomendaciones de seguridad para WiFi pública             |
+| estudiante  | Micro-quiz relacionado con la clase de redes               |
+| docente     | Enlaces a recursos académicos internos simulados           |
+| staff       | Panel administrativo con opciones de gestión simuladas     |
+
+El portal selecciona la plantilla dinámicamente en función del rol recibido:
+
+```python
+return render_template(f"landing_{role}.html", user=user, role=role, remaining=timeout)
+```
+
+Todas las landings muestran el contador regresivo del `Session-Timeout` que
+RADIUS devolvió en el `Access-Accept`, permitiendo comprobar en vivo que la
+autorización expira automáticamente al llegar a cero.
+
+### Capturas por rol
+
+**Landing invitado** (fondo gris, tips de seguridad en WiFi pública):
+
+![Landing invitado](img/landing-invitado.png)
+
+**Landing estudiante** (fondo azul, micro-quiz de la clase):
+
+![Landing estudiante](img/landing-estudiante.png)
+
+**Landing docente** (fondo verde, recursos académicos simulados):
+
+![Landing docente](img/landing-docente.png)
+
+**Landing staff** (fondo morado, panel administrativo simulado):
+
+![Landing staff](img/landing-staff.png)
 
 ## 7. Conclusiones
 
