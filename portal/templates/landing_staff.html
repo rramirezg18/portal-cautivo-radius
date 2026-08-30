@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Naruto-WiFi — Staff</title>
+<style>
+body{font-family:sans-serif;max-width:420px;margin:20px auto;padding:20px;background:#f4f4f4}
+.card{background:white;padding:24px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+h2{margin:0 0 12px;color:#8e44ad}
+.role{background:#8e44ad;color:white;padding:4px 10px;border-radius:12px;font-size:12px;text-transform:uppercase}
+.timer{font-size:28px;color:#e67e22;font-weight:bold;text-align:center;margin:16px 0}
+.admin{background:#f4ecf7;border-left:4px solid #8e44ad;padding:14px;margin:12px 0;border-radius:4px}
+.admin h3{margin:0 0 10px;color:#4a235a;font-size:15px}
+.admin a{display:block;padding:8px;margin:4px 0;background:white;color:#8e44ad;text-decoration:none;border-radius:4px;border:1px solid #8e44ad;font-size:14px}
+.admin a:hover{background:#8e44ad;color:white}
+.btn{display:block;text-align:center;margin-top:16px;padding:12px;background:#8e44ad;color:white;text-decoration:none;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Panel Staff — {{ user }} <span class="role">{{ role }}</span></h2>
+<p>Acceso administrativo con máxima duración de sesión.</p>
+<div class="timer">⏱ <span id="t">{{ remaining }}</span> s</div>
+<div class="admin">
+  <h3>⚙️ Panel administrativo</h3>
+  <a href="#">👥 Gestión de usuarios</a>
+  <a href="#">📊 Reportes y auditoría</a>
+  <a href="#">🔧 Configuración del sistema</a>
+  <a href="#">🌐 Monitor de red</a>
+</div>
+<a href="http://www.google.com" class="btn">Ir a Internet</a>
+</div>
+<script>
+let n = {{ remaining }};
+setInterval(() => { if (n>0) document.getElementById('t').textContent = --n; }, 1000);
+</script>
+</body>
+</html>

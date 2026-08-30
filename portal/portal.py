@@ -163,7 +163,7 @@ def login():
 
     print(f"[LOGIN] OK: {user} ({role}) desde {ip}, timeout={timeout}s")
     # Renderizar landing directamente (no redirigir) para que la CNA la muestre antes de cerrar
-    return render_template("landing.html", user=user, role=role, remaining=timeout)
+    return render_template(f"landing_{role}.html", user=user, role=role, remaining=timeout)
 
 
 @app.route("/landing")
@@ -174,7 +174,7 @@ def landing():
         return redirect("/")
     remaining = int(sess["timeout"] - (time.time() - sess["start"]))
     return render_template(
-        "landing.html",
+        f"landing_{sess['role']}.html",
         user=sess["user"],
         role=sess["role"],
         remaining=remaining,

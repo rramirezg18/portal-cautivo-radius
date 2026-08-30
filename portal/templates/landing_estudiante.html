@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Naruto-WiFi — Estudiante</title>
+<style>
+body{font-family:sans-serif;max-width:420px;margin:20px auto;padding:20px;background:#f4f4f4}
+.card{background:white;padding:24px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+h2{margin:0 0 12px;color:#2980b9}
+.role{background:#3498db;color:white;padding:4px 10px;border-radius:12px;font-size:12px;text-transform:uppercase}
+.timer{font-size:28px;color:#e67e22;font-weight:bold;text-align:center;margin:16px 0}
+.quiz{background:#eaf3fb;border-left:4px solid #3498db;padding:14px;margin:12px 0;border-radius:4px}
+.quiz h3{margin:0 0 10px;color:#2c3e50;font-size:15px}
+.quiz button{display:block;width:100%;margin:6px 0;padding:10px;background:white;border:1px solid #3498db;border-radius:4px;cursor:pointer;font-size:14px}
+.quiz button:hover{background:#3498db;color:white}
+.result{margin-top:10px;padding:8px;border-radius:4px;font-size:14px;display:none}
+.ok{background:#d4edda;color:#155724}
+.bad{background:#f8d7da;color:#721c24}
+.btn{display:block;text-align:center;margin-top:16px;padding:12px;background:#3498db;color:white;text-decoration:none;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Hola {{ user }} <span class="role">{{ role }}</span></h2>
+<p>Bienvenido a la red académica.</p>
+<div class="timer">⏱ <span id="t">{{ remaining }}</span> s</div>
+<div class="quiz">
+  <h3>📚 Micro-quiz de la semana</h3>
+  <p style="margin:0 0 8px;font-size:14px"><b>¿Qué protocolo AAA usa este portal para autenticar?</b></p>
+  <button onclick="resp(false)">TACACS+</button>
+  <button onclick="resp(true)">RADIUS</button>
+  <button onclick="resp(false)">LDAP</button>
+  <button onclick="resp(false)">Kerberos</button>
+  <div id="r" class="result"></div>
+</div>
+<a href="http://www.google.com" class="btn">Ir a Internet</a>
+</div>
+<script>
+let n = {{ remaining }};
+setInterval(() => { if (n>0) document.getElementById('t').textContent = --n; }, 1000);
+function resp(ok) {
+  const r = document.getElementById('r');
+  r.style.display = 'block';
+  r.className = 'result ' + (ok ? 'ok' : 'bad');
+  r.textContent = ok ? '✓ ¡Correcto! RADIUS (RFC 2865).' : '✗ Intenta de nuevo.';
+}
+</script>
+</body>
+</html>
