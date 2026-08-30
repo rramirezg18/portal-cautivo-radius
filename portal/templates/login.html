@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Naruto-WiFi — Iniciar sesión</title>
+<style>
+body{font-family:sans-serif;max-width:420px;margin:40px auto;padding:20px;background:#f4f4f4}
+.card{background:white;padding:24px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+h2{margin-top:0;color:#e67e22}
+input{width:100%;padding:10px;margin:6px 0;box-sizing:border-box;border:1px solid #ccc;border-radius:4px}
+button{width:100%;padding:12px;background:#e67e22;color:white;border:none;border-radius:4px;font-size:16px;cursor:pointer}
+.err{color:#c00;background:#fee;padding:8px;border-radius:4px;margin:10px 0}
+.hint{color:#666;font-size:13px;margin-top:16px}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Bienvenido a Naruto-WiFi</h2>
+<p>Inicia sesión para acceder a Internet.</p>
+{% if error %}<div class="err">{{ error }}</div>{% endif %}
+<form method="post" action="/login">
+  <input name="username" placeholder="Usuario" required autofocus>
+  <input name="password" type="password" placeholder="Contraseña" required>
+  <button>Entrar</button>
+</form>
+<p class="hint">Usuarios de prueba: guest1 / student1 / teacher1<br>
+(contraseñas: <code>&lt;usuario&gt;123</code>)</p>
+</div>
+</body>
+</html>

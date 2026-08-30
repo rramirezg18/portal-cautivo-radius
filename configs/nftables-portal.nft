@@ -1,0 +1,44 @@
+#!/usr/sbin/nft -f
+flush ruleset
+
+table ip portal_nat {
+    # Set dinámico de clientes autorizados (con timeout)
+    set allowed_ip {
+        type ipv4_addr
+        flags timeout
+    }
+
+    # ---------- PREROUTING (intercept) ----------
+    chain prerouting {
+        type nat hook prerouting priority -100;
+
+        # Permitir DHCP y DNS al gateway sin tocar
+        udp dport { 53, 67, 68 } accept
+        tcp dport 53 accept
+
+        # Tráfico dirigido al portal mismo
+        ip daddr 10.10.0.1 accept
+
+        # Clientes autorizados: no interceptar
+        ip saddr @allowed_ip accept
+
+        # Todo lo demás desde wlp2s0 en HTTP -> al portal
+        iifname "wlp2s0" tcp dport 80 redirect to :80
+    }
+
+    # ---------- POSTROUTING (NAT) ----------
+    chain postrouting {
+        type nat hook postrouting priority 100;
+        oifname "usb0" masquerade
+    }
+
+    # ---------- FORWARD (filtro) ----------
+    chain forward {
+        type filter hook forward priority 0; policy drop;
+
+        ct state established,related accept
+
+        # Solo clientes autorizados pueden salir a Internet por usb0
+        ip saddr @allowed_ip oifname "usb0" accept
+    }
+}

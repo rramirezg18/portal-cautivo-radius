@@ -1,0 +1,11 @@
+table inet portal {
+	chain forward {
+		type filter hook forward priority filter; policy accept;
+	}
+}
+table ip portal_nat {
+	chain postrouting {
+		type nat hook postrouting priority srcnat; policy accept;
+		oifname "usb0" masquerade
+	}
+}

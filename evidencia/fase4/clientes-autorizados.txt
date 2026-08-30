@@ -1,0 +1,7 @@
+table ip portal_nat {
+	set allowed_ip {
+		type ipv4_addr
+		flags timeout
+		elements = { 10.10.0.113 timeout 1h expires 58m9s906ms }
+	}
+}

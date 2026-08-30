@@ -1,0 +1,47 @@
+Sent Access-Request Id 109 from 0.0.0.0:49460 to 127.0.0.1:1812 length 78
+	User-Name = "student1"
+	User-Password = "student123"
+	NAS-IP-Address = 127.0.1.1
+	NAS-Port = 0
+	Message-Authenticator = 0x00
+	Cleartext-Password = "student123"
+Received Access-Accept Id 109 from 127.0.0.1:1812 to 127.0.0.1:49460 length 53
+	Message-Authenticator = 0x3f8aece7eb270df4c3a4369f4bc68a39
+	Reply-Message = "student"
+	Session-Timeout = 3600
+---
+Sent Access-Request Id 221 from 0.0.0.0:38307 to 127.0.0.1:1812 length 76
+	User-Name = "guest1"
+	User-Password = "guest123"
+	NAS-IP-Address = 127.0.1.1
+	NAS-Port = 0
+	Message-Authenticator = 0x00
+	Cleartext-Password = "guest123"
+Received Access-Accept Id 221 from 127.0.0.1:1812 to 127.0.0.1:38307 length 51
+	Message-Authenticator = 0x62bfbd354383750f9af98c447b3f0747
+	Reply-Message = "guest"
+	Session-Timeout = 1800
+---
+Sent Access-Request Id 24 from 0.0.0.0:53192 to 127.0.0.1:1812 length 78
+	User-Name = "teacher1"
+	User-Password = "teacher123"
+	NAS-IP-Address = 127.0.1.1
+	NAS-Port = 0
+	Message-Authenticator = 0x00
+	Cleartext-Password = "teacher123"
+Received Access-Accept Id 24 from 127.0.0.1:1812 to 127.0.0.1:53192 length 53
+	Message-Authenticator = 0xe63d348bf6824e1e9e4437ea03853f8b
+	Reply-Message = "teacher"
+	Session-Timeout = 7200
+---
+(0) -: Expected Access-Accept got Access-Reject
+Sent Access-Request Id 31 from 0.0.0.0:46896 to 127.0.0.1:1812 length 78
+	User-Name = "student1"
+	User-Password = "wrongpass"
+	NAS-IP-Address = 127.0.1.1
+	NAS-Port = 0
+	Message-Authenticator = 0x00
+	Cleartext-Password = "wrongpass"
+Received Access-Reject Id 31 from 127.0.0.1:1812 to 127.0.0.1:46896 length 47
+	Message-Authenticator = 0xb04453b61000ea65a0a0ec7ba2c30322
+	Reply-Message = "student"

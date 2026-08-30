@@ -1,0 +1,29 @@
+Station aa:1f:74:97:2f:68 (on wlp2s0)
+	inactive time:	9214 ms
+	rx bytes:	1156627
+	rx packets:	6265
+	tx bytes:	3933984
+	tx packets:	3930
+	tx retries:	0
+	tx failed:	0
+	rx drop misc:	46
+	signal:  	-42 [-42, -43] dBm
+	signal avg:	-42 [-42, -44] dBm
+	tx bitrate:	65.0 MBit/s MCS 7
+	tx duration:	0 us
+	rx bitrate:	65.0 MBit/s MCS 7
+	rx duration:	0 us
+	authorized:	yes
+	authenticated:	yes
+	associated:	yes
+	preamble:	long
+	WMM/WME:	yes
+	MFP:		no
+	TDLS peer:	no
+	DTIM period:	2
+	beacon interval:100
+	short slot time:yes
+	connected time:	342 seconds
+	associated at [boottime]:	210341.841s
+	associated at:	1788101194795 ms
+	current time:	1788101537203 ms

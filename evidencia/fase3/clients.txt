@@ -1,0 +1,5 @@
+client localhost {
+	#  Only *one* of ipaddr, ipv4addr, ipv6addr may be specified for
+	#  a client.
+	#
+	#  ipaddr will accept IPv4 or IPv6 addresses with optional CIDR

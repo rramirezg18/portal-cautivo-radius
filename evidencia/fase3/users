@@ -1,0 +1,23 @@
+# Usuarios del portal cautivo - Proyecto Naruto-WiFi
+# Formato: <usuario>  Cleartext-Password := "<pass>"
+#          <atributos de respuesta>
+
+guest1    Cleartext-Password := "guest123"
+          Reply-Message := "guest",
+          Session-Timeout := 1800
+
+student1  Cleartext-Password := "student123"
+          Reply-Message := "student",
+          Session-Timeout := 3600
+
+student2  Cleartext-Password := "student456"
+          Reply-Message := "student",
+          Session-Timeout := 3600
+
+teacher1  Cleartext-Password := "teacher123"
+          Reply-Message := "teacher",
+          Session-Timeout := 7200
+
+staff1    Cleartext-Password := "staff123"
+          Reply-Message := "staff",
+          Session-Timeout := 14400
