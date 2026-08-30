@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>informe.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="informe-técnico-portal-cautivo-naruto-wifi">Informe Técnico: Portal Cautivo Naruto-WiFi</h1>
+<p><strong>Curso:</strong> Redes de Computadoras
+<strong>Universidad:</strong> Mariano Gálvez de Guatemala
+<strong>Facultad:</strong> Ingeniería en Sistemas de Información
+<strong>Estudiante:</strong> Roberto — Carné 7690-22-12700
+<strong>Fecha:</strong> Agosto 2026</p>
+<hr>
+<h2 id="1-introducción">1. Introducción</h2>
+<p>Este proyecto implementa un portal cautivo funcional, publicado desde una laptop Ubuntu como punto de acceso WiFi real, con autenticación centralizada mediante un servidor RADIUS (FreeRADIUS) y registro de sesiones (accounting).</p>
+<p>El objetivo pedagógico central es evidenciar la diferencia entre la asociación WiFi (capa 2) y el acceso real a Internet (capa 3+): el cliente se asocia al SSID sin problema, pero no obtiene salida a Internet hasta autenticarse en el portal contra RADIUS.</p>
+<h2 id="2-arquitectura">2. Arquitectura</h2>
+<pre class="hljs"><code><div>[Celular cliente] --WiFi--&gt; [wlp2s0: 10.10.0.1] --NAT--&gt; [usb0] --&gt; Internet
+                                    |
+                                    +-- hostapd     (AP)
+                                    +-- dnsmasq     (DHCP/DNS)
+                                    +-- nftables    (NAT + intercept)
+                                    +-- FreeRADIUS  (AAA)
+                                    +-- Flask       (portal)
+</div></code></pre>
+<ul>
+<li><strong>Red del AP:</strong> <code>10.10.0.0/24</code>, gateway <code>10.10.0.1</code></li>
+<li><strong>Uplink:</strong> tethering USB desde celular (<code>usb0</code>)</li>
+<li><strong>Interfaz AP:</strong> WiFi integrada (<code>wlp2s0</code>, chipset Realtek RTL8822CE)</li>
+</ul>
+<h2 id="3-componentes">3. Componentes</h2>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Herramienta</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Punto de acceso WiFi</td>
+<td>hostapd</td>
+<td>Publica SSID <code>Naruto-WiFi</code> en canal 6</td>
+</tr>
+<tr>
+<td>DHCP + DNS</td>
+<td>dnsmasq</td>
+<td>Asigna IPs <code>10.10.0.50-200</code>, resuelve DNS</td>
+</tr>
+<tr>
+<td>NAT + firewall</td>
+<td>nftables</td>
+<td>Enmascara hacia <code>usb0</code>, intercepta HTTP no autenticado</td>
+</tr>
+<tr>
+<td>Servidor AAA</td>
+<td>FreeRADIUS 3.2</td>
+<td>Valida credenciales por CHAP, registra accounting</td>
+</tr>
+<tr>
+<td>Portal cautivo</td>
+<td>Flask + pyrad</td>
+<td>Login web, gestión de sesiones autorizadas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-configuración">4. Configuración</h2>
+<h3 id="41-hostapd">4.1 hostapd</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">interface</span>=wlp2s0
+<span class="hljs-attr">driver</span>=nl80211
+<span class="hljs-attr">ssid</span>=Naruto-WiFi
+<span class="hljs-attr">hw_mode</span>=g
+<span class="hljs-attr">channel</span>=<span class="hljs-number">6</span>
+<span class="hljs-attr">country_code</span>=GT
+<span class="hljs-attr">ieee80211n</span>=<span class="hljs-number">1</span>
+<span class="hljs-attr">wmm_enabled</span>=<span class="hljs-number">1</span>
+<span class="hljs-attr">auth_algs</span>=<span class="hljs-number">1</span>
+<span class="hljs-attr">wpa</span>=<span class="hljs-number">0</span>
+</div></code></pre>
+<p>El AP publica una red abierta. La autenticación se realiza en capa de aplicación (portal).</p>
+<h3 id="42-dnsmasq">4.2 dnsmasq</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">interface</span>=wlp2s0
+bind-interfaces
+<span class="hljs-attr">dhcp-range</span>=<span class="hljs-number">10.10</span>.<span class="hljs-number">0.50</span>,<span class="hljs-number">10.10</span>.<span class="hljs-number">0.200</span>,<span class="hljs-number">12</span>h
+<span class="hljs-attr">dhcp-option</span>=<span class="hljs-number">3</span>,<span class="hljs-number">10.10</span>.<span class="hljs-number">0.1</span>
+<span class="hljs-attr">dhcp-option</span>=<span class="hljs-number">6</span>,<span class="hljs-number">10.10</span>.<span class="hljs-number">0.1</span>
+<span class="hljs-attr">server</span>=<span class="hljs-number">1.1</span>.<span class="hljs-number">1.1</span>
+<span class="hljs-attr">server</span>=<span class="hljs-number">8.8</span>.<span class="hljs-number">8.8</span>
+</div></code></pre>
+<h3 id="43-nftables">4.3 nftables</h3>
+<pre class="hljs"><code><div>table ip portal_nat {
+    set allowed_ip {
+        type ipv4_addr
+        flags timeout
+    }
+
+    chain prerouting {
+        type nat hook prerouting priority -100;
+        udp dport { 53, 67, 68 } accept
+        tcp dport 53 accept
+        ip daddr 10.10.0.1 accept
+        ip saddr @allowed_ip accept
+        iifname &quot;wlp2s0&quot; tcp dport 80 redirect to :80
+    }
+
+    chain postrouting {
+        type nat hook postrouting priority 100;
+        oifname &quot;usb0&quot; masquerade
+    }
+
+    chain forward {
+        type filter hook forward priority 0; policy drop;
+        ct state established,related accept
+        ip saddr @allowed_ip oifname &quot;usb0&quot; accept
+    }
+}
+</div></code></pre>
+<p>El set <code>allowed_ip</code> es dinámico y con timeout: el portal Flask agrega elementos cuando un usuario se autentica y expiran automáticamente al llegar al <code>Session-Timeout</code> recibido de RADIUS.</p>
+<h3 id="44-freeradius">4.4 FreeRADIUS</h3>
+<p><strong>Usuarios</strong> (<code>mods-config/files/authorize</code>):</p>
+<pre class="hljs"><code><div>student1  Cleartext-Password := &quot;student123&quot;
+          Reply-Message := &quot;student&quot;,
+          Session-Timeout := 3600
+</div></code></pre>
+<p>Se definen 5 usuarios con roles diferenciados (guest, student, teacher, staff) y timeouts distintos. El atributo <code>Reply-Message</code> se usa como transportador del rol hacia el portal.</p>
+<p><strong>Cliente RADIUS</strong> (<code>clients.conf</code>):</p>
+<pre class="hljs"><code><div>client localhost {
+    ipaddr = 127.0.0.1
+    secret = naruto2026
+    require_message_authenticator = no
+}
+</div></code></pre>
+<h3 id="45-portal-flask">4.5 Portal Flask</h3>
+<p>El portal implementa el flujo:</p>
+<ol>
+<li>Recibe el POST con usuario y contraseña.</li>
+<li>Construye un paquete Access-Request con autenticación CHAP.</li>
+<li>Envía a FreeRADIUS.</li>
+<li>Si es <code>Access-Accept</code>: extrae <code>Reply-Message</code> y <code>Session-Timeout</code>, agrega la IP del cliente a <code>allowed_ip</code> de nftables, envía <code>Accounting-Start</code>.</li>
+<li>Si es <code>Access-Reject</code>: muestra error.</li>
+<li>Un hilo watcher espera el timeout, revoca acceso y envía <code>Accounting-Stop</code>.</li>
+</ol>
+<p><strong>Nota técnica</strong>: se eligió CHAP en lugar de PAP porque <code>pyrad 2.4</code> (en Ubuntu 24.04 con Python 3.12) tiene un bug al cifrar contraseñas PAP con el secret compartido. CHAP calcula un hash MD5 con un challenge aleatorio y evita este problema, además de ser más seguro contra captura de tráfico.</p>
+<h2 id="5-evidencias-por-fase">5. Evidencias por fase</h2>
+<h3 id="fase-1--ap--dhcp--nat">Fase 1 — AP + DHCP + NAT</h3>
+<ul>
+<li>Cliente asociado al AP (HONOR-X8a-5G) con IP <code>10.10.0.113</code> asignada por DHCP.</li>
+<li>NAT funcionando: el cliente navega a Internet a través del tethering USB.</li>
+</ul>
+<p><img src="img/fase1-celular-conectado.png" alt="Celular conectado con IP 10.10.0.113"></p>
+<h3 id="fase-2--portal-cautivo-interceptando-tráfico">Fase 2 — Portal cautivo interceptando tráfico</h3>
+<ul>
+<li>Cliente conecta al SSID y automáticamente aparece la ventana &quot;Iniciar sesión en la red&quot; (CNA de Android/iOS).</li>
+<li>El portal muestra login y permite autorización local (previa a integración con RADIUS).</li>
+</ul>
+<p><img src="img/fase2-portal-cna.png" alt="Ventana CNA con el portal de login"></p>
+<h3 id="fase-3--radius-funcional">Fase 3 — RADIUS funcional</h3>
+<ul>
+<li>FreeRADIUS con 5 usuarios de prueba y roles diferenciados.</li>
+<li>Validado con <code>radtest</code>: <code>Access-Accept</code> para credenciales válidas, <code>Access-Reject</code> para inválidas.</li>
+</ul>
+<p><img src="img/fase3-radtest.png" alt="Validación con radtest: Access-Accept"></p>
+<h3 id="fase-4--integración-portal--radius">Fase 4 — Integración portal + RADIUS</h3>
+<ul>
+<li>Portal valida credenciales contra FreeRADIUS usando CHAP.</li>
+<li>Extrae <code>Reply-Message</code> (rol) y <code>Session-Timeout</code> de la respuesta.</li>
+<li>Captura Wireshark con el intercambio completo:
+<ul>
+<li>Access-Request → Access-Reject (credencial inválida)</li>
+<li>Access-Request → Access-Accept (credencial válida)</li>
+<li>Accounting-Request → Accounting-Response</li>
+</ul>
+</li>
+</ul>
+<p><img src="img/fase4-wireshark.png" alt="Wireshark: intercambio RADIUS completo"></p>
+<h3 id="fase-5--accounting">Fase 5 — Accounting</h3>
+<ul>
+<li>FreeRADIUS registra automáticamente cada sesión en <code>/var/log/freeradius/radacct/</code>.</li>
+<li>Cada entrada incluye User-Name, Framed-IP, Calling-Station-Id (MAC), Session-Id, Timestamp.</li>
+<li>Al expirar la sesión, se envía Acct-Stop con <code>Acct-Session-Time</code> y <code>Acct-Terminate-Cause = Session-Timeout</code>.</li>
+</ul>
+<p><img src="img/fase5-accounting.png" alt="Accounting: Start y Stop registrados"></p>
+<h2 id="6-flujo-end-to-end">6. Flujo end-to-end</h2>
+<ol>
+<li>El cliente conecta al SSID <code>Naruto-WiFi</code> (abierto).</li>
+<li>Recibe IP por DHCP: <code>10.10.0.X</code>.</li>
+<li>Android/iOS hace su prueba de conectividad (<code>generate_204</code> o <code>hotspot-detect.html</code>).</li>
+<li>nftables intercepta y redirige al portal en <code>10.10.0.1:80</code>.</li>
+<li>Se abre la CNA con el formulario de login.</li>
+<li>El usuario ingresa credenciales; el portal envía Access-Request CHAP a RADIUS.</li>
+<li>FreeRADIUS responde con <code>Access-Accept</code> + atributos (rol, timeout).</li>
+<li>El portal agrega la IP al set autorizado de nftables y envía Accounting-Start.</li>
+<li>El cliente ya navega a Internet libremente.</li>
+<li>Al expirar el timeout, el portal quita la IP y envía Accounting-Stop.</li>
+</ol>
+<p><img src="img/landing-conectado.png" alt="Landing del portal después del login"></p>
+<h2 id="7-conclusiones">7. Conclusiones</h2>
+<ul>
+<li>Se logró implementar un portal cautivo completo, funcional y demostrable con dispositivos reales.</li>
+<li>La separación entre asociación WiFi y acceso a Internet quedó evidenciada: el cliente puede conectarse al SSID pero no navegar hasta autenticarse.</li>
+<li>RADIUS demostró su valor como sistema centralizado de AAA: no solo autentica, sino que transporta atributos (rol, timeout) que el portal aplica en tiempo real.</li>
+<li>El accounting permite auditoría completa de sesiones.</li>
+<li>La implementación con software libre (hostapd, dnsmasq, nftables, FreeRADIUS, Flask) es reproducible en cualquier laptop con soporte WiFi AP, sin requerir hardware especializado.</li>
+</ul>
+<h2 id="8-referencias">8. Referencias</h2>
+<ul>
+<li>RFC 2865 — Remote Authentication Dial In User Service (RADIUS)</li>
+<li>RFC 2866 — RADIUS Accounting</li>
+<li>Documentación FreeRADIUS: https://freeradius.org</li>
+<li>Documentación hostapd: https://w1.fi/hostapd/</li>
+<li>Documentación nftables: https://wiki.nftables.org</li>
+</ul>
+
+</body>
+</html>

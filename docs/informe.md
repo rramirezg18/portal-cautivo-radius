@@ -1,10 +1,17 @@
-# Informe Técnico: Portal Cautivo Naruto-WiFi
+# Informe Técnico: Portal Cautivo con Radius - Naruto-WiFi
 
-**Curso:** Redes de Computadoras
-**Universidad:** Mariano Gálvez de Guatemala
-**Facultad:** Ingeniería en Sistemas de Información
-**Estudiante:** Roberto — Carné 7690-22-12700
-**Fecha:** Agosto 2026
+
+Roberto Ramírez — 7690-22-12700
+
+05 de Agosto 2026
+
+Universidad Mariano Gálvez Sede Boca del Monte
+
+Telecomunicaciones
+
+Ing. Luis Alvarado
+
+Repositorio: [github.com/rramirezg18/portal-cautivo-radius](https://github.com/rramirezg18/portal-cautivo-radius)
 
 ---
 
